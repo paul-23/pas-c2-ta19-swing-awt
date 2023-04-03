@@ -4,25 +4,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Peliculas extends JFrame {
+public class Calculadora extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Create the frame.
-	 */
-	public Peliculas() {
+	public Calculadora() {
 		setResizable(false);
 		setVisible(true);
-		setTitle("Peliculas");
+		setTitle("Calculadora");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 945, 424);
+		setBounds(100, 100, 771, 540);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 	}
 
 }
