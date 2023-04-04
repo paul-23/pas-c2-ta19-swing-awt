@@ -41,7 +41,6 @@ public class SaludadorPersonalizable extends JFrame {
 		
 		setTitle("Saludador"); // Ponemos el título de la ventana de la aplicación
 		setResizable(false); // Indicamos que no se puede modificar el tamaño de la ventana de la aplicación
-		setVisible(true); // Lo hacemos visible para que se muestre por pantalla
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Indicamos que al cerrar la ventana se cierra la apliacción
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -73,6 +72,7 @@ public class SaludadorPersonalizable extends JFrame {
 		
 		btnSaludar.addActionListener(al); // Creamos un listener para enviar una acción al hacer clic en el botón
 		nombre.addActionListener(al); // Creamos un listener para enviar una acción al hacer al pulsar la tecla enter
+		setVisible(true); // Lo hacemos visible para que se muestre por pantalla
 	}
 	
 	// Cremos un metodo que no muestra un mensaje dentro de una alerta al pulsar el botón
