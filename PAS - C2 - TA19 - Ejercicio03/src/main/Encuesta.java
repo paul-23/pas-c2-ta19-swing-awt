@@ -42,8 +42,7 @@ public class Encuesta extends JFrame {
 
 		// --------------------------- PANEL APLICACIÓN ---------------------------
 
-		// Cambiamos el icono de la aplicación utilizando un una imagen de un enlace
-		// externo
+		// Icono de la aplicación utilizando un una imagen de un enlace externo
 		try {
 			URL url = new URL("https://pauls23.000webhostapp.com/images/logo1.png");
 			Image image = ImageIO.read(url);
@@ -54,6 +53,7 @@ public class Encuesta extends JFrame {
 			System.out.println("Can not load file");
 		}
 
+		// Parámetros de la ventana principal de la aplicación
 		setResizable(false);
 		setTitle("Encuesta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,6 +65,7 @@ public class Encuesta extends JFrame {
 		contentPane.setLayout(null);
 
 		// --------------------------- RADIO BUTTONS ---------------------------
+		// Añadimos los radio buttons del SO preferido por el usuario
 
 		rbnWindows = new JRadioButton("Windows");
 		rbnWindows.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -87,6 +88,7 @@ public class Encuesta extends JFrame {
 		bgroup.add(rbnMac);
 
 		// --------------------------- CHECKBOX ---------------------------
+		// Añadimos los checkbox de las especialidades del usuario
 
 		chckbxProgramacion = new JCheckBox("Programación");
 		chckbxProgramacion.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -104,6 +106,7 @@ public class Encuesta extends JFrame {
 		contentPane.add(chckbxAdministracion);
 
 		// --------------------------- SLIDER ---------------------------
+		// Añadimos el slider de las horas que le dedica al ordenador el usuario
 
 		slider = new JSlider();
 		slider.setValue(0);
@@ -115,6 +118,7 @@ public class Encuesta extends JFrame {
 		slider.addChangeListener(ch);
 
 		// --------------------------- LABELS ---------------------------
+		// Los diferentes campo de texto con títulos y enunciados
 
 		JLabel lblNewLabel = new JLabel("Elige un sistema operativo:");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 23));
@@ -137,6 +141,7 @@ public class Encuesta extends JFrame {
 		contentPane.add(lblNewLabel_2);
 
 		// --------------------------- BUTTON ---------------------------
+		// Botón mostrar para consultar todos los datos añadidos por el usuario
 
 		btnMostrarDatos = new JButton("Mostrar");
 		btnMostrarDatos.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -149,12 +154,16 @@ public class Encuesta extends JFrame {
 		lblNewLabel_3.setBounds(186, 26, 387, 41);
 		contentPane.add(lblNewLabel_3);
 
+		// Accion Listener del botón mostrar
 		btnMostrarDatos.addActionListener(al);
 
+		// Indicamos que se muestre la pantalla principal
 		setVisible(true);
 	}
 
 	// --------------------------- SLIDER ARRASTRAR ---------------------------
+	// Función del slider para ver por pantalla su valor en tiempo real (hroas
+	// seleccionadas 0-10)
 
 	ChangeListener ch = new ChangeListener() {
 		public void stateChanged(ChangeEvent event) {
@@ -163,6 +172,8 @@ public class Encuesta extends JFrame {
 	};
 
 	// --------------------------- BUTTON HACER CLIC ---------------------------
+	// Recogemos los datos introducidos por el usuario y creamos un campo de texto
+	// que lo mostraremos por pantalla
 
 	ActionListener al = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -171,30 +182,33 @@ public class Encuesta extends JFrame {
 			JCheckBox[] chckbxEspecialidad = { chckbxProgramacion, chckbxDiseñoGrafico, chckbxAdministracion };
 			String datosUsuario = "OPCIONES DEL USUARIO\nEl sistema operativo seleccionado: ";
 
-			// Recorremos el array en y mostramos el SO seleccionado
+			// Recorremos el array de radio buttons y mostramos el SO seleccionado
 			for (int i = 0; i < btnSO.length; i++) {
 				if (btnSO[i].isSelected()) {
-					datosUsuario += "\n - " + btnSO[i].getText();
-					datosVaciosRB = false;
+					datosUsuario += "\n - " + btnSO[i].getText(); // Los añadimos a la cadena de texto
+					datosVaciosRB = false; // Comprobación si hemos seleccionado una opción
 				}
 			}
 
 			datosUsuario += "\nEspecialidades seleccionadas: ";
 
-			// Recorremos el array en y mostramos las especialidades seleccionadas
+			// Recorremos el array de checkbox y mostramos las especialidades seleccionadas
 			for (int i = 0; i < chckbxEspecialidad.length; i++) {
 				if (chckbxEspecialidad[i].isSelected()) {
-					datosUsuario += "\n - " + chckbxEspecialidad[i].getText();
-					datosVaciosCHB = false;
+					datosUsuario += "\n - " + chckbxEspecialidad[i].getText(); // Los añadimos a la cadena de texto
+					datosVaciosCHB = false; // Comprobación si hemos seleccionado al menos una opción
 				}
 			}
 
+			// Recogemos el dato del slider de horas y lo añadimos a la cadena de texto
 			datosUsuario += " \nHoras seleccionadas: " + slider.getValue();
 
+			// Hacemos una comrpobación para seleccionar un radiobutton y al menos una checkbox
 			if (!datosVaciosRB && !datosVaciosCHB) {
-				JOptionPane.showMessageDialog(contentPane, datosUsuario); // Mostramos por pantalla las opciones del
-																			// usuario
+				// Mostramos por pantalla las opciones del usuario
+				JOptionPane.showMessageDialog(contentPane, datosUsuario);
 			} else {
+				// Si no se cumple una de las condiciones mostramos un mesaje de error
 				JOptionPane.showMessageDialog(contentPane, "NO SE HAN ELEGIDO TODAS LAS OPCIONES");
 			}
 

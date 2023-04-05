@@ -16,7 +16,7 @@ import java.awt.Color;
 public class Calculadora extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JPanel contentPane;
 	private JTextField operando1, operando2, resultado;
 	private JButton restar, sumar, multiplicar, dividir;
@@ -26,8 +26,8 @@ public class Calculadora extends JFrame {
 	private JMenuItem mntmSalir, mntmAbout;
 
 	public Calculadora() {
-		
-		// Cambiamos el icono de la aplicación utilizando un una imagen de un enlace externo
+
+		// Icono de la aplicación utilizando un una imagen de un enlace externo
 		try {
 			URL url = new URL("https://pauls23.000webhostapp.com/images/logo1.png");
 			Image image = ImageIO.read(url);
@@ -37,7 +37,8 @@ public class Calculadora extends JFrame {
 		} catch (IOException iox) {
 			System.out.println("Can not load file");
 		}
-		
+
+		// Propiedades de la ventana de la aplicación
 		getContentPane().setBackground(new Color(159, 198, 208));
 		setResizable(false);
 		setTitle("Mini Calculadora");
@@ -46,23 +47,29 @@ public class Calculadora extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().setLayout(null);
-		// text fields
+
+		// --------------------------- TEXT FIELDS ---------------------------
+		// Campos donde introducimos los números o se muestra el resultado
+
 		operando1 = new JTextField();
 		operando1.setHorizontalAlignment(SwingConstants.CENTER);
 		operando1.setFont(new Font("Arial", Font.PLAIN, 21));
-		operando1.setBounds(74, 142, 190, 30);
+		operando1.setBounds(74, 142, 190, 36);
 		getContentPane().add(operando1);
 		operando2 = new JTextField();
 		operando2.setHorizontalAlignment(SwingConstants.CENTER);
 		operando2.setFont(new Font("Arial", Font.PLAIN, 21));
-		operando2.setBounds(74, 217, 190, 30);
+		operando2.setBounds(74, 216, 190, 36);
 		getContentPane().add(operando2);
 		resultado = new JTextField();
 		resultado.setHorizontalAlignment(SwingConstants.CENTER);
 		resultado.setFont(new Font("Arial", Font.BOLD, 23));
 		resultado.setBounds(74, 294, 190, 44);
 		getContentPane().add(resultado);
-		// buttons
+
+		// --------------------------- BUTTONS ---------------------------
+		// Los diferntes botones para seleccionar las operaciones (+, -, *, /)
+
 		restar = new JButton("Restar");
 		restar.setForeground(new Color(255, 255, 255));
 		restar.setBackground(new Color(0, 102, 153));
@@ -94,30 +101,34 @@ public class Calculadora extends JFrame {
 		dividir.setBounds(171, 462, 130, 80);
 		getContentPane().add(dividir);
 		dividir.addActionListener(al);
-		// labels
+
+		// --------------------------- LABELS ---------------------------
+		// Títulos y nombres (campos de texto fijos)
+
 		titulo = new JLabel("Mini Calculadora");
+		titulo.setForeground(new Color(0, 102, 153));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setFont(new Font("Arial", Font.BOLD, 23));
-		titulo.setBounds(53, 58, 232, 44);
+		titulo.setFont(new Font("Arial", Font.BOLD, 32));
+		titulo.setBounds(31, 51, 270, 51);
 		getContentPane().add(titulo);
 
 		texto1 = new JLabel("Primer número");
-		texto1.setHorizontalAlignment(SwingConstants.CENTER);
 		texto1.setFont(new Font("Arial", Font.PLAIN, 21));
-		texto1.setBounds(69, 113, 200, 30);
+		texto1.setBounds(74, 113, 190, 30);
 		getContentPane().add(texto1);
 
 		texto2 = new JLabel("Segundo número");
-		texto2.setHorizontalAlignment(SwingConstants.CENTER);
 		texto2.setFont(new Font("Arial", Font.PLAIN, 21));
-		texto2.setBounds(69, 183, 200, 30);
+		texto2.setBounds(74, 183, 190, 30);
 		getContentPane().add(texto2);
 
 		result = new JLabel("Resultado: ");
-		result.setHorizontalAlignment(SwingConstants.CENTER);
 		result.setFont(new Font("Arial", Font.PLAIN, 23));
-		result.setBounds(69, 258, 200, 30);
+		result.setBounds(74, 264, 190, 30);
 		getContentPane().add(result);
+
+		// --------------------------- MENÚ ---------------------------
+		// Menú de opciones para mostrar el about o salir de aplicación
 
 		menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -137,42 +148,51 @@ public class Calculadora extends JFrame {
 		mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setFont(new Font("Arial", Font.PLAIN, 20));
 		mnOpciones.add(mntmSalir);
-		setVisible(true);
+		
 		mntmSalir.addActionListener(al);
+		
+		// Indicamos que se muestre la ventana
+		setVisible(true);
 	}
 
+	// Método para identificar el botón pulsado y realizar una acción
 	ActionListener al = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == restar) {
-				int num1 = Integer.parseInt(operando1.getText());
-				int num2 = Integer.parseInt(operando2.getText());
-				int resul = num1 - num2;
-				resultado.setText(String.valueOf(resul));
-			}
+			// Sumar
 			if (e.getSource() == sumar) {
 				int num1 = Integer.parseInt(operando1.getText());
 				int num2 = Integer.parseInt(operando2.getText());
 				int resul = num1 + num2;
 				resultado.setText(String.valueOf(resul));
 			}
+			// Restar
+			if (e.getSource() == restar) {
+				int num1 = Integer.parseInt(operando1.getText());
+				int num2 = Integer.parseInt(operando2.getText());
+				int resul = num1 - num2;
+				resultado.setText(String.valueOf(resul));
+			}
+			// Multiplicar
 			if (e.getSource() == multiplicar) {
 				int num1 = Integer.parseInt(operando1.getText());
 				int num2 = Integer.parseInt(operando2.getText());
 				int resul = num1 * num2;
 				resultado.setText(String.valueOf(resul));
 			}
+			// Dividir
 			if (e.getSource() == dividir) {
 				int num1 = Integer.parseInt(operando1.getText());
 				int num2 = Integer.parseInt(operando2.getText());
 				int resul = num1 / num2;
 				resultado.setText(String.valueOf(resul));
 			}
-
+			// Menu bar Salir
 			if (e.getSource() == mntmSalir) {
 				System.exit(0);
 			}
-
+			// Menu bar About
 			if (e.getSource() == mntmAbout) {
+				// Mensaje about
 				JOptionPane.showMessageDialog(null, "Mensaje About Aplicación Calculadora");
 			}
 		}
